@@ -1,11 +1,17 @@
 <template>
   <div class="common-container">
+    <PageHeader></PageHeader>
     <div>アルコール</div>
   </div>
 </template>
 
 <script>
-export default {};
+import PageHeader from "@/components/PageHeader.vue";
+export default {
+  components: {
+    PageHeader,
+  },
+};
 </script>
 
 <style scoped>
