@@ -1,5 +1,7 @@
 <template>
-  <div class="common-container"></div>
+  <div class="common-container">
+    <div>コーヒー</div>
+  </div>
 </template>
 
 <script>
