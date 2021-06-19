@@ -1,6 +1,6 @@
 <template>
   <div class="reservation-form-container">
-    <p class="headline">お気に入りを予約する</p>
+    <p class="headline">Reserve here..</p>
     <div class="button-block">
       <a class="item"><span>メニューから探す</span></a>
       <a class="item"><span>日付から探す</span></a>
@@ -33,6 +33,7 @@ export default {};
   width: 80%;
   margin: 5% auto;
   text-align: center;
+  font-weight: bold;
 }
 .button-block {
   width: 80%;
@@ -59,11 +60,9 @@ span {
   height: 50px;
   background: #f1f1f1;
   box-sizing: border-box;
-  color: #333;
+  font-weight: bold;
   font-size: 14px;
-  letter-spacing: 0.1em;
   text-decoration: none;
-  /* box-shadow: 0px 5px 12px #cad4e2, -6px -6px 12px #fff; */
   border-radius: 10px;
   position: absolute;
   top: -5px;

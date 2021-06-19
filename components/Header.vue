@@ -5,11 +5,11 @@
         <img src="@/assets/images/logo2.png" alt="" class="image" />
       </div>
       <div class="link">
-        <nuxt-link class="item" to="/coffee">coffee</nuxt-link>
-        <nuxt-link class="item" to="/alcohol">alcohol</nuxt-link>
-        <nuxt-link class="item" to="/search">search</nuxt-link>
-        <nuxt-link class="item" to="/login">login</nuxt-link>
-        <nuxt-link class="item" to="/post">post</nuxt-link>
+        <nuxt-link class="item" to="/coffee">COFFEE</nuxt-link>
+        <nuxt-link class="item" to="/alcohol">ALCOHOL</nuxt-link>
+        <nuxt-link class="item" to="/search">SEARCH</nuxt-link>
+        <nuxt-link class="item" to="/login">LOGIN</nuxt-link>
+        <nuxt-link class="item" to="/post">POST</nuxt-link>
       </div>
     </div>
   </div>
@@ -43,5 +43,10 @@ export default {};
   display: flex;
   margin: auto 0;
   justify-content: space-between;
+}
+.item {
+  color: orangered;
+  font-weight: bold;
+  text-decoration: none;
 }
 </style>

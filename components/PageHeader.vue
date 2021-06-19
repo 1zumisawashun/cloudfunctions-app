@@ -11,7 +11,7 @@ export default {};
 <style scoped>
 .image {
   height: 270px;
-  background-image: url("~@/assets/images/test2.jpg");
+  background-image: url("~@/assets/images/alcohol.jpg");
   background-size: cover;
 }
 </style>
