@@ -10,7 +10,8 @@ export default {};
 
 <style scoped>
 .image {
-  height: 300px;
-  background-color: lightblue;
+  height: 270px;
+  background-image: url("~@/assets/images/test2.jpg");
+  background-size: cover;
 }
 </style>

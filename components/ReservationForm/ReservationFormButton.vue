@@ -1,5 +1,7 @@
 <template>
-  <div class="reservation-form-button"></div>
+  <div class="reservation-form-button">
+    <button></button>
+  </div>
 </template>
 
 <script>
