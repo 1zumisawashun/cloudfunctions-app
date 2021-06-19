@@ -1,15 +1,15 @@
 <template>
   <div class="common-container">
     <PageHeader></PageHeader>
-    <div class="coffee-container">
-      <p>{{ tests }}</p>
-      <p>{{ posts }}</p>
-      <button @click="submit()">test</button>
-      <section class="search"></section>
-      <section class="article"></section>
-      <section class="post"></section>
-    </div>
     <ReservationForm></ReservationForm>
+    <div class="coffee-container">
+      <div class="coffee-block" v-for="post in posts" :key="post.id">
+        <p class="item">{{ post.fields.name.stringValue }}</p>
+        <p class="item">{{ post.fields.category.stringValue }}</p>
+        <p class="item">{{ post.fields.hotorice.stringValue }}</p>
+        <p class="item">{{ post.fields.recommend.stringValue }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -18,39 +18,19 @@ import PageHeader from "@/components/PageHeader.vue";
 import ReservationForm from "@/components/ReservationForm/ReservationForm.vue";
 export default {
   data() {
-    return {
-      tests: "",
-      posts: "",
-    };
+    return {};
   },
   components: {
     PageHeader,
     ReservationForm,
   },
   async asyncData({ $axios }) {
-    const response = await $axios.get(
-      "https://firestore.googleapis.com/v1/projects/otsudori-7fdf5/databases/(default)/documents/test"
+    const response = await $axios.$get(
+      "https://firestore.googleapis.com/v1/projects/otsudori-7fdf5/databases/(default)/documents/posts"
     );
-    return { tests: response };
-    console.log(posts);
-  },
-  methods: {
-    submit: async function () {
-      const url =
-        "https://firestore.googleapis.com/v1/projects/otsudori-7fdf5/databases/(default)/documents/test/rlRYwqfEfOUrSozDW7Ek/comment";
-      // ネストのデータを送信する時はidを指定する必要がある。
-      const res = await this.$axios.$post(url, {
-        fields: {
-          name: {
-            stringValue: "ネストに通信しています",
-          },
-          comment: {
-            stringValue: "これもネストに通信しています",
-          },
-        },
-      });
-      console.log(res);
-    },
+    console.log(response.documents[0].fields);
+    console.log(response.documents[1].fields);
+    return { posts: response.documents };
   },
 };
 </script>
@@ -58,5 +38,13 @@ export default {
 <style scoped>
 .coffee-container {
   min-height: 1000px;
+}
+.coffee-block {
+  width: 80%;
+  margin: 10% auto;
+}
+.item {
+  display: block;
+  background-color: #f1f1f1;
 }
 </style>
