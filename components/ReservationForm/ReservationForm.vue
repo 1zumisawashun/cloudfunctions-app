@@ -98,7 +98,7 @@ span {
   top: 0;
   padding: 0 30px;
   border-radius: 0 5px 5px 0;
-  background: #7fbfff;
+  background: navy;
   border: none;
   color: #fff;
   font-weight: bold;

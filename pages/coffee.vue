@@ -9,6 +9,11 @@
         <p class="item">{{ post.fields.hotorice.stringValue }}</p>
         <p class="item">{{ post.fields.recommend.stringValue }}</p>
       </div>
+      <div class="card-wrapper">
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+      </div>
     </div>
   </div>
 </template>
@@ -16,6 +21,7 @@
 <script>
 import PageHeader from "@/components/PageHeader.vue";
 import ReservationForm from "@/components/ReservationForm/ReservationForm.vue";
+import Card from "@/components/Card.vue";
 export default {
   data() {
     return {};
@@ -23,6 +29,7 @@ export default {
   components: {
     PageHeader,
     ReservationForm,
+    Card,
   },
   async asyncData({ $axios }) {
     const response = await $axios.$get(
@@ -41,10 +48,13 @@ export default {
 }
 .coffee-block {
   width: 80%;
-  margin: 10% auto;
+  margin: 1% auto;
 }
 .item {
   display: block;
   background-color: #f1f1f1;
+}
+.card-wrapper {
+  display: flex;
 }
 </style>

@@ -45,7 +45,7 @@ export default {};
   justify-content: space-between;
 }
 .item {
-  color: orangered;
+  color: navy;
   font-weight: bold;
   text-decoration: none;
 }
