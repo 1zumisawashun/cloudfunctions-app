@@ -1,9 +1,9 @@
 <template>
   <div class="header-container">
     <div class="wrapper">
-      <div class="logo">
-        <img src="@/assets/images/logo2.png" alt="" class="image" />
-      </div>
+      <nuxt-link class="logo" to="/">
+        <img src="@/assets/images/logo_transparent.png" alt="" class="image" />
+      </nuxt-link>
       <div class="link">
         <nuxt-link class="item" to="/coffee">COFFEE</nuxt-link>
         <nuxt-link class="item" to="/alcohol">ALCOHOL</nuxt-link>
@@ -29,7 +29,8 @@ export default {};
 }
 .image {
   width: 100%;
-  height: auto;
+  height: 100px;
+  object-fit: cover;
 }
 .wrapper {
   width: 70%;

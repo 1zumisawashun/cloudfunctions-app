@@ -1,24 +1,29 @@
 <template>
   <div class="post-container">
     <div class="item">
-      <label for="name">drink name </label>
+      <label for="name">店舗名 </label>
       <input type="text" id="name" name="name" v-model="name" />
     </div>
     <div class="item">
-      <label for="category">drink category</label>
+      <label for="category">作り手</label>
       <input type="text" id="category" name="category" v-model="category" />
     </div>
     <div class="item">
-      <label for="useremail">hot or ice</label>
+      <label for="useremail">経験年数</label>
       <input type="text" id="useremail" name="useremail" v-model="hotorice" />
     </div>
     <div class="item">
-      <label for="message">recoomend</label>
-      <textarea id="message" name="message" v-model="recommend"></textarea>
+      <label for="image"></label>
+      <input type="file" id="image" name="image" />
+    </div>
+    <div class="item">
+      <label for="place">経験年数</label>
+      <input type="text" id="place" name="place" v-model="place" />
     </div>
     <div class="submit">
       <button @click="submit()">登録</button>
     </div>
+    <!-- user登録・編集とbevelegeの登録・編集の画面を作らなくてはいけない -->
   </div>
 </template>
 
