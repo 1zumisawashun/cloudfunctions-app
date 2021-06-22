@@ -3,24 +3,22 @@
     <PageHeader></PageHeader>
     <ReservationForm></ReservationForm>
     <div class="coffee-container">
-      <div class="coffee-block" v-for="post in posts" :key="post.id">
+      <!-- <div class="coffee-block" v-for="post in posts" :key="post.id">
         <p class="item">{{ post.fields.name.stringValue }}</p>
         <p class="item">{{ post.fields.category.stringValue }}</p>
         <p class="item">{{ post.fields.hotorice.stringValue }}</p>
         <p class="item">{{ post.fields.recommend.stringValue }}</p>
-      </div>
+      </div> -->
       <div class="coffee-card-container">
         <p class="headline">HotBeverage</p>
         <carousel
           :per-page="3"
           :loop="true"
           :autoplay="true"
-          :pagination-padding="5"
           :autoplay-timeout="4000"
-          class="coffee-card-wrapper"
           :navigation-enabled="true"
-          navigation-prev-label="<"
-          navigation-next-label=">"
+          :paginationEnabled="false"
+          class="coffee-card-wrapper"
         >
           <slide> <Card></Card></slide>
           <slide> <Card></Card></slide>
@@ -37,12 +35,10 @@
           :per-page="3"
           :loop="true"
           :autoplay="true"
-          :pagination-padding="5"
           :autoplay-timeout="4000"
-          class="alcohol-card-wrapper"
           :navigation-enabled="true"
-          navigation-prev-label="<"
-          navigation-next-label=">"
+          :paginationEnabled="false"
+          class="alcohol-card-wrapper"
         >
           <slide> <Card></Card></slide>
           <slide> <Card></Card></slide>
@@ -87,7 +83,7 @@ export default {
 
 <style scoped>
 .coffee-container {
-  min-height: 1000px;
+  margin-top: 6%;
 }
 .coffee-block {
   width: 80%;
@@ -99,7 +95,7 @@ export default {
 }
 .alcohol-card-container,
 .coffee-card-container {
-  margin: 1% 0;
+  margin: 2% 0;
   padding: 1% 0;
   background-color: #f1f1f1;
 }
@@ -121,13 +117,5 @@ export default {
   font-size: 18px;
   font-weight: bold;
   text-align: right;
-}
-.VueCarousel-navigation-next,
-.VueCarousel-navigation-prev {
-  font-size: 30px;
-  font-weight: bold;
-}
-.VueCarousel-pagination {
-  display: none;
 }
 </style>

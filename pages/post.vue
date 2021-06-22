@@ -1,23 +1,23 @@
 <template>
   <div class="post-container">
     <div class="item">
-      <label for="name">店舗名 </label>
+      <label for="shop">店舗名 </label>
+      <input type="text" id="shop" name="shop" v-model="shop" />
+    </div>
+    <div class="item">
+      <label for="name">作り手</label>
       <input type="text" id="name" name="name" v-model="name" />
     </div>
     <div class="item">
-      <label for="category">作り手</label>
-      <input type="text" id="category" name="category" v-model="category" />
-    </div>
-    <div class="item">
-      <label for="useremail">経験年数</label>
-      <input type="text" id="useremail" name="useremail" v-model="hotorice" />
+      <label for="career">経験年数</label>
+      <input type="text" id="career" name="career" v-model="career" />
     </div>
     <div class="item">
       <label for="image"></label>
       <input type="file" id="image" name="image" />
     </div>
     <div class="item">
-      <label for="place">経験年数</label>
+      <label for="place">場所</label>
       <input type="text" id="place" name="place" v-model="place" />
     </div>
     <div class="submit">
@@ -31,10 +31,11 @@
 export default {
   data() {
     return {
+      shop: "",
       name: "",
-      category: "",
-      hotorice: "",
-      recommend: "",
+      career: "",
+      image: "",
+      place: "",
     };
   },
   methods: {
@@ -45,25 +46,29 @@ export default {
       const res = this.$axios
         .$post(url, {
           fields: {
+            shop: {
+              stringValue: this.shop,
+            },
             name: {
               stringValue: this.name,
             },
-            category: {
-              stringValue: this.category,
+            career: {
+              stringValue: this.career,
             },
-            hotorice: {
-              stringValue: this.hotorice,
+            image: {
+              stringValue: this.image,
             },
-            recommend: {
-              stringValue: this.recommend,
+            place: {
+              stringValue: this.place,
             },
           },
         })
         .then(() => {
-          (this.name = null),
-            (this.category = null),
-            (this.hotorice = null),
-            (this.recommend = null);
+          (this.shop = null),
+            (this.name = null),
+            (this.career = null),
+            (this.image = null);
+          this.place = null;
         });
       alert("登録しました");
       console.log(res);

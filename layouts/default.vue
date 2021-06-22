@@ -6,6 +6,27 @@
   </div>
 </template>
 
+<script>
+import firebase from "~/plugins/firebase";
+export default {
+  mounted() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.$store.commit({
+          type: "user/setUser",
+          uid: user.uid,
+          name: user.displayName,
+          email: user.email,
+          icon: user.photoURL,
+        });
+      } else {
+        console.log("取得できていません。");
+      }
+    });
+  },
+};
+</script>
+
 <style>
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",

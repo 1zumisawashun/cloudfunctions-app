@@ -13,7 +13,8 @@
     "core-js": "^3.9.1",
     "firebase": "^8.6.8",
     "nuxt": "^2.15.3",
-    "vue-carousel": "^0.18.0"
+    "vue-carousel": "^0.18.0",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {}
 }

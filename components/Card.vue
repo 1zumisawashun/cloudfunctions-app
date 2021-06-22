@@ -51,8 +51,6 @@ export default {};
 .icon .image {
   border-radius: 100%;
 }
-.profile {
-}
 .picture {
   align-items: center;
 }
@@ -60,8 +58,6 @@ export default {};
   border-radius: 10px;
   display: block;
   margin: 0 auto;
-}
-.experience {
 }
 .reputation {
   display: flex;

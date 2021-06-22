@@ -8,15 +8,50 @@
         <nuxt-link class="item" to="/coffee">COFFEE</nuxt-link>
         <nuxt-link class="item" to="/alcohol">ALCOHOL</nuxt-link>
         <nuxt-link class="item" to="/search">SEARCH</nuxt-link>
-        <nuxt-link class="item" to="/login">LOGIN</nuxt-link>
-        <nuxt-link class="item" to="/post">POST</nuxt-link>
+        <nuxt-link class="item" to="/login" v-show="!isAuthenticated"
+          >LOGIN</nuxt-link
+        >
+        <a class="item" @click="logout()" v-show="isAuthenticated"> LOGOUT </a>
+        <nuxt-link class="item" to="/post" v-show="isAuthenticated"
+          >POST</nuxt-link
+        >
+        <nuxt-link class="item" v-if="isAuthenticated" :to="`/users/${userId}`"
+          >USER</nuxt-link
+        >
+        <!-- v-showだとエラーになる -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import firebase from "~/plugins/firebase";
+export default {
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters["user/isAuthenticated"];
+    },
+    userId() {
+      return this.$store.state.user.user.uid;
+    },
+  },
+  methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          //ここでゲストログインをユーザは痕跡を全て消す。
+          this.$store.commit("user/setUser", null);
+          window.alert("ログアウトに成功しました");
+        })
+        .catch((e) => {
+          window.alert("ログアウトに失敗しました");
+          console.log(e);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>

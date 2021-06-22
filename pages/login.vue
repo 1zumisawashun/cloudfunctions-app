@@ -1,6 +1,8 @@
 <template>
   <div class="common-container">
     <button @click="login()">login</button>
+    <p v-show="!this.isAuthenticated">user is not logined</p>
+    <p v-show="this.isAuthenticated">user is logined</p>
   </div>
 </template>
 
@@ -10,20 +12,28 @@ export default {
   data() {
     return {};
   },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters["user/isAuthenticated"];
+    },
+  },
   methods: {
     login() {
-      console.log("login action");
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase
         .auth()
         .signInWithPopup(provider)
-        .then(function (result) {
-          const user = result.user;
-          console.log("success : " + user);
+        .then((result) => {
+          const user = {
+            uid: result.user.uid,
+            name: result.user.displayName,
+            image: result.user.photoURL,
+            email: result.user.email,
+          };
+          this.$store.commit("user/setUser", user);
         })
-        .catch(function (error) {
-          var errorCode = error.code;
-          console.log("error : " + errorCode);
+        .catch((error) => {
+          console.log(error);
         });
     },
   },
