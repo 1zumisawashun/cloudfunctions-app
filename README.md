@@ -1,5 +1,9 @@
 # otsudori
 
+デバック方法の確認
+try, catch, then, error など
+promise の async await も同じようなデバックにも使えるのかもしれない。
+
 ## Build Setup
 
 ```bash

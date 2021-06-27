@@ -13,8 +13,14 @@
       <input type="text" id="career" name="career" v-model="career" />
     </div>
     <div class="item">
-      <label for="image"></label>
-      <input type="file" id="image" name="image" />
+      <label for="image">画像</label>
+      <input type="file" id="image" name="image" @change="onFileChange" />
+    </div>
+    <div>
+      <div class="preview">
+        <img :src="this.preview.file" alt="" class="image" />
+        <img :src="this.upload.file" alt="" class="image" />
+      </div>
     </div>
     <div class="item">
       <label for="place">場所</label>
@@ -28,6 +34,7 @@
 </template>
 
 <script>
+import firebase from "~/plugins/firebase";
 export default {
   data() {
     return {
@@ -36,7 +43,21 @@ export default {
       career: "",
       image: "",
       place: "",
+      upload: {
+        file: "",
+      },
+      preview: {
+        file: "",
+      },
     };
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
+  },
+  mounted() {
+    console.log(this.user.user.uid);
   },
   methods: {
     submit() {
@@ -73,6 +94,31 @@ export default {
       alert("登録しました");
       console.log(res);
     },
+    onFileChange(e) {
+      this.upload.file = e.target.files[0];
+      if (this.upload.file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.preview.file = reader.result + "";
+          console.log(this.preview.file);
+          console.log(this);
+          // console.log(this.preview.file);
+        };
+        reader.readAsDataURL(this.upload.file);
+        console.log("選択完了");
+        this.submitImg(this.upload.file);
+      }
+    },
+    submitImg(file) {
+      let storage = firebase.storage();
+      let storageRef = storage
+        .ref()
+        .child(`/${this.user.user.uid}/` + file.name);
+      storageRef
+        .put(file)
+        .then((res) => console.log(res))
+        .catch((error) => console.log(error));
+    },
   },
 };
 </script>
@@ -86,5 +132,10 @@ export default {
   width: 40%;
   height: 50px;
   display: block;
+}
+.image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 </style>

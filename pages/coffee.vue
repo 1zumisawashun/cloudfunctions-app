@@ -49,6 +49,66 @@
         </carousel>
         <p class="footline">IceBeverageを全て見る</p>
       </div>
+      <div class="alcohol-card-container">
+        <p class="headline">alcohol</p>
+        <carousel
+          :per-page="3"
+          :loop="true"
+          :autoplay="true"
+          :autoplay-timeout="4000"
+          :navigation-enabled="true"
+          :paginationEnabled="false"
+          class="alcohol-card-wrapper"
+        >
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+        </carousel>
+        <p class="footline">Alcoholを全て見る</p>
+      </div>
+      <div class="alcohol-card-container">
+        <p class="headline">Espresso</p>
+        <carousel
+          :per-page="3"
+          :loop="true"
+          :autoplay="true"
+          :autoplay-timeout="4000"
+          :navigation-enabled="true"
+          :paginationEnabled="false"
+          class="alcohol-card-wrapper"
+        >
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+        </carousel>
+        <p class="footline">Espressoを全て見る</p>
+      </div>
+      <div class="alcohol-card-container">
+        <p class="headline">OtherDrink</p>
+        <carousel
+          :per-page="3"
+          :loop="true"
+          :autoplay="true"
+          :autoplay-timeout="4000"
+          :navigation-enabled="true"
+          :paginationEnabled="false"
+          class="alcohol-card-wrapper"
+        >
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+          <slide> <Card></Card></slide>
+        </carousel>
+        <p class="footline">OtherDrinkを全て見る</p>
+      </div>
     </div>
   </div>
 </template>
