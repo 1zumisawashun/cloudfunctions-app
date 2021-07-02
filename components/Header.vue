@@ -7,7 +7,6 @@
       <div class="link">
         <nuxt-link class="item" to="/coffee">COFFEE</nuxt-link>
         <nuxt-link class="item" to="/alcohol">ALCOHOL</nuxt-link>
-        <nuxt-link class="item" to="/search">SEARCH</nuxt-link>
         <nuxt-link class="item" to="/login" v-show="!isAuthenticated"
           >LOGIN</nuxt-link
         >
@@ -18,7 +17,7 @@
         <nuxt-link class="item" v-if="isAuthenticated" :to="`/users/${userId}`"
           >USER</nuxt-link
         >
-        <button @click="sayHello">say hello</button>
+        <button class="item" @click="sayHello">say hello</button>
         <!-- v-showだとエラーになる -->
       </div>
     </div>
