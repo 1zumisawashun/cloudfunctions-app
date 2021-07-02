@@ -18,6 +18,7 @@
         <nuxt-link class="item" v-if="isAuthenticated" :to="`/users/${userId}`"
           >USER</nuxt-link
         >
+        <button @click="sayHello">say hello</button>
         <!-- v-showだとエラーになる -->
       </div>
     </div>
@@ -49,6 +50,13 @@ export default {
           window.alert("ログアウトに失敗しました");
           console.log(e);
         });
+    },
+    sayHello() {
+      const sayHello = firebase.functions().httpsCallable("sayHello");
+      sayHello({ name: `shun` }).then((result) => {
+        //resultの中にcloud functionsのretrunの返り値が入る
+        console.log(result.data);
+      });
     },
   },
 };
