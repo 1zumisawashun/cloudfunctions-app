@@ -6,7 +6,6 @@ module.exports = {
     browser: true,
     jquery: true,
     document: true
-    //envに追加することでeslintのルールを上書きすることができる
   },
   extends: ["eslint:recommended", "google"],
   rules: {

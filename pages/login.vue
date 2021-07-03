@@ -4,28 +4,30 @@
     <p v-show="!this.isAuthenticated">user is not logined</p>
     <p v-show="this.isAuthenticated">user is logined</p>
   </div> -->
-
-  <div class="auth">
-    <!-- <div class="auth open">
-      <h1>Login</h1>
-      <form class="login">
-        <input type="text" name="email" placeholder="email" />
-        <input type="text" name="password" placeholder="password" />
-        <button>Login</button>
-        <p class="error"></p>
-      </form>
-      <div>No account?<a class="swhich">Register insted!</a></div>
+  <div class="login-container">
+    <div class="auth open">
+      <div class="modal active">
+        <!-- 最初はloginFormを表示する -->
+        <h1>Login</h1>
+        <form class="login">
+          <input type="text" name="email" placeholder="email" />
+          <input type="text" name="password" placeholder="password" />
+          <button>Login</button>
+          <p class="error"></p>
+        </form>
+        <div>No account?<a class="switch">Register insted!</a></div>
+      </div>
+      <div class="modal">
+        <h1>Register</h1>
+        <form class="register">
+          <input type="text" name="email" placeholder="email" />
+          <input type="text" name="password" placeholder="password" />
+          <button>Register</button>
+          <p class="error"></p>
+        </form>
+        <div>Got on account?<a class="switch">Login insted!</a></div>
+      </div>
     </div>
-    <div class="modal1">
-      <h1>Register</h1>
-      <form class="register">
-        <input type="text" name="email" placeholder="email" />
-        <input type="text" name="password" placeholder="password" />
-        <button>Register</button>
-        <p class="error"></p>
-      </form>
-      <div>Got on account?<a class="swhich">Login insted!</a></div>
-    </div> -->
 
     <div class="new-request">
       <div class="modal">
@@ -185,19 +187,25 @@ button {
   cursor: pointer;
 }
 
-/* .auth {
+.auth {
   width: 100%;
   height: 100%;
   position: fixed;
   background: #fafafa;
   display: none;
   z-index: 1;
-} */
-/* .auth .open {
+}
+.auth.open {
   display: block;
 }
 .auth a {
   text-decoration: underline;
   cursor: pointer;
-} */
+}
+.auth .modal {
+  display: none;
+}
+.auth .modal.active {
+  display: block;
+}
 </style>

@@ -14,3 +14,11 @@ exports.sayHello = functions.https.onCall((data, context) => {
   return `Hello, ${name}`;
   // onCallを使う時はreturnで値を返す
 });
+
+exports.userDeleted = functions.auth.user().onCreate(user => {
+  console.log("user created", user.email, user.uid);
+});
+
+exports.newUserSignup = functions.auth.user().onDelete(user => {
+  console.log("user deleted", user.email, user.uid);
+});
