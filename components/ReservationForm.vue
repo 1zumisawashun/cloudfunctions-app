@@ -95,12 +95,11 @@ span {
   height: 50px;
   position: absolute;
   left: 70%;
-  top: 0;
+  top: -2px;
   padding: 0 30px;
   border-radius: 0 5px 5px 0;
-  background: navy;
+  background: #ffe100;
   border: none;
-  color: #fff;
   font-weight: bold;
   font-size: 14px;
 }

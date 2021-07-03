@@ -1,7 +1,6 @@
 <template>
-  <div class="common-container">
+  <div>
     <PageHeader></PageHeader>
-    <div>アルコール</div>
   </div>
 </template>
 

@@ -1,9 +1,4 @@
 <template>
-  <!-- <div class="common-container">
-    <button @click="login()">login</button>
-    <p v-show="!this.isAuthenticated">user is not logined</p>
-    <p v-show="this.isAuthenticated">user is logined</p>
-  </div> -->
   <div class="login-container">
     <div class="auth open">
       <div class="modal active">
@@ -39,13 +34,6 @@
         </form>
       </div>
     </div>
-
-    <header>
-      <div>
-        <a class="add-request">add request</a>
-        <a class="sign-out">sign out</a>
-      </div>
-    </header>
 
     <section class="content">
       <h1>Tutorial Request</h1>
@@ -104,7 +92,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 header {
   width: 100%;
   padding: 20px;

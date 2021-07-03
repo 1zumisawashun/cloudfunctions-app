@@ -29,7 +29,7 @@
         </carousel>
         <p class="footline">HotBeverageを全て見る</p>
       </div>
-      <div class="alcohol-card-container">
+      <div class="coffee-card-container">
         <p class="headline">IceBeverage</p>
         <carousel
           :per-page="3"
@@ -38,7 +38,7 @@
           :autoplay-timeout="4000"
           :navigation-enabled="true"
           :paginationEnabled="false"
-          class="alcohol-card-wrapper"
+          class="coffee-card-wrapper"
         >
           <slide> <Card></Card></slide>
           <slide> <Card></Card></slide>
@@ -49,73 +49,13 @@
         </carousel>
         <p class="footline">IceBeverageを全て見る</p>
       </div>
-      <div class="alcohol-card-container">
-        <p class="headline">alcohol</p>
-        <carousel
-          :per-page="3"
-          :loop="true"
-          :autoplay="true"
-          :autoplay-timeout="4000"
-          :navigation-enabled="true"
-          :paginationEnabled="false"
-          class="alcohol-card-wrapper"
-        >
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-        </carousel>
-        <p class="footline">Alcoholを全て見る</p>
-      </div>
-      <div class="alcohol-card-container">
-        <p class="headline">Espresso</p>
-        <carousel
-          :per-page="3"
-          :loop="true"
-          :autoplay="true"
-          :autoplay-timeout="4000"
-          :navigation-enabled="true"
-          :paginationEnabled="false"
-          class="alcohol-card-wrapper"
-        >
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-        </carousel>
-        <p class="footline">Espressoを全て見る</p>
-      </div>
-      <div class="alcohol-card-container">
-        <p class="headline">OtherDrink</p>
-        <carousel
-          :per-page="3"
-          :loop="true"
-          :autoplay="true"
-          :autoplay-timeout="4000"
-          :navigation-enabled="true"
-          :paginationEnabled="false"
-          class="alcohol-card-wrapper"
-        >
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-          <slide> <Card></Card></slide>
-        </carousel>
-        <p class="footline">OtherDrinkを全て見る</p>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 import PageHeader from "@/components/PageHeader.vue";
-import ReservationForm from "@/components/ReservationForm/ReservationForm.vue";
+import ReservationForm from "@/components/ReservationForm.vue";
 import Card from "@/components/Card.vue";
 import Carousel from "vue-carousel/src/Carousel.vue";
 import Slide from "vue-carousel/src/Slide.vue";
@@ -143,7 +83,7 @@ export default {
 
 <style scoped>
 .coffee-container {
-  margin-top: 6%;
+  margin-top: 10%;
 }
 .coffee-block {
   width: 80%;
@@ -153,13 +93,7 @@ export default {
   display: block;
   background-color: #f1f1f1;
 }
-.alcohol-card-container,
-.coffee-card-container {
-  margin: 2% 0;
-  padding: 1% 0;
-  background-color: #f1f1f1;
-}
-.alcohol-card-wrapper,
+
 .coffee-card-wrapper {
   width: 70%;
   margin: 0 auto;
