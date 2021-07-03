@@ -3,12 +3,13 @@ module.exports = {
   env: {
     es6: true,
     node: true,
+    browser: true,
+    jquery: true,
+    document: true
+    //envに追加することでeslintのルールを上書きすることができる
   },
-  extends: [
-    "eslint:recommended",
-    "google",
-  ],
+  extends: ["eslint:recommended", "google"],
   rules: {
-    quotes: ["error", "double"],
-  },
+    quotes: ["error", "double"]
+  }
 };

@@ -79,7 +79,6 @@ export default {
   justify-content: space-between;
 }
 .item {
-  color: navy;
   font-weight: bold;
   text-decoration: none;
 }

@@ -6,7 +6,7 @@
   </div> -->
 
   <div class="auth">
-    <div class="auth open">
+    <!-- <div class="auth open">
       <h1>Login</h1>
       <form class="login">
         <input type="text" name="email" placeholder="email" />
@@ -25,7 +25,7 @@
         <p class="error"></p>
       </form>
       <div>Got on account?<a class="swhich">Login insted!</a></div>
-    </div>
+    </div> -->
 
     <div class="new-request">
       <div class="modal">
@@ -52,7 +52,7 @@
           <span class="text">Laravel 6 Tutorial</span>
           <div>
             <span class="votes">125</span>
-            <i class="material-ion upvote"> arrow-upword</i>
+            <i class="mdi mdi-check" />
           </div>
         </li>
       </ul>
@@ -103,31 +103,13 @@ export default {
 </script>
 
 <style scoped>
-body {
-  margin: 0;
-  background: #fafafa;
-}
-body,
-h1,
-h2,
-p,
-a,
-input {
-  color: #555;
-  font-family: Consolas, Arial;
-  text-decoration: none;
-}
-ul {
-  margin: 0;
-  padding: 0;
-}
 header {
   width: 100%;
   padding: 20px;
   text-align: right;
   background: white;
   box-sizing: border-box;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
 }
 header a {
   margin-left: 10px;
@@ -139,6 +121,70 @@ header a:hover {
   background: #ffe100;
   color: black;
 }
+.content {
+  max-width: 800px;
+  margin: 40px auto 0;
+}
+.request-list li {
+  padding: 20px;
+  margin: 10px auto;
+  list-style-type: none;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+}
+.request-list .votes {
+  position: relative;
+  top: -5px;
+  z-index: 0;
+}
+.request-list .upvote {
+  cursor: pointer;
+  border-radius: 50px;
+}
+.request-list .upvote:active {
+  color: black;
+  background: #ffe100;
+}
+.modal {
+  width: 300px;
+  padding: 30px;
+  margin: 100px auto;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.new-request {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  display: none;
+}
+.new-request.open {
+  display: block;
+}
+input {
+  display: block;
+  margin: 8px 0;
+  padding: 8px 2px;
+  border-width: 0 0 2px 0;
+  width: 100%;
+}
+button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #ffe100;
+  border: 0;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+}
+
 /* .auth {
   width: 100%;
   height: 100%;
@@ -147,11 +193,11 @@ header a:hover {
   display: none;
   z-index: 1;
 } */
-.auth .open {
+/* .auth .open {
   display: block;
 }
 .auth a {
   text-decoration: underline;
   cursor: pointer;
-}
+} */
 </style>
