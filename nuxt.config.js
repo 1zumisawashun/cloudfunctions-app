@@ -21,8 +21,7 @@ export default {
     { src: "~/plugins/vue-carousel", ssr: false },
     { src: "~/plugins/firebase", ssr: false },
     { src: "~/plugins/app", ssr: false },
-    { src: "~/plugins/auth", ssr: false },
-    { src: "~/plugins/request", ssr: false }
+    { src: "~/plugins/auth", ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

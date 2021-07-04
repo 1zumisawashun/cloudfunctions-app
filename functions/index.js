@@ -65,7 +65,7 @@ exports.addRequest = functions.https.onCall((data, context) => {
     });
 });
 
-exports.upvote = functions.https.onCall((data, context) => {
+exports.upvote = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     //ログインしていなかったら
     //contet = Authentication dataが入っている
@@ -85,28 +85,40 @@ exports.upvote = functions.https.onCall((data, context) => {
     .collection("request")
     .doc(data.id);
 
-  return user.get().then(doc => {
-    //check user hasn't already upvoted the request
-    if (doc.data().upvoteOn.includes(data.id)) {
-      throw new functions.https.HttpsError(
-        "failed-precondition",
-        "You can only upvote something once"
-      );
-    }
-    //update user array
-    return user
-      .update({
-        upvoteOn: [...doc.data().upvoteOn, data.id]
-        //requestのidが入る
-      })
-      .then(() => {
-        return request.update({
-          upvotes: admin.firestore.FieldValue.increment(1)
-        });
-        //request upvotesを1増やす
-      })
-      .catch(error => {
-        alert(error.message);
-      });
+  const doc = await user.get();
+  //check user hasn't already upvoted the request
+  if (doc.data().upvoteOn.includes(data.id)) {
+    throw new functions.https.HttpsError(
+      "failed-precondition",
+      "You can only upvote something once"
+    );
+  }
+  //update user array
+  await user.update({
+    upvoteOn: [...doc.data().upvoteOn, data.id]
+    //requestのidが入る
+  });
+  return request.update({
+    upvotes: admin.firestore.FieldValue.increment(1)
   });
 });
+
+exports.logActivities = functions.firestore
+  .document("/{collection}/{id}")
+  .onCreate((snap, context) => {
+    console.log(snap.data());
+    const collection = context.params.collection;
+    const id = context.params.id;
+    const activities = admin.firestore().collection("activities");
+    if (collection === "request") {
+      return activities.add({
+        text: "a new tutorial request was added"
+      });
+    }
+    if (collection === "user") {
+      return activities.add({
+        text: "a new user signed up"
+      });
+    }
+    return null;
+  });

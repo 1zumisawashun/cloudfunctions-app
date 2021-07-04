@@ -96,6 +96,10 @@ export default {
     showNotification(msg) {
       this.result = true;
       this.message = msg;
+      setTimeout(() => {
+        this.result = false;
+        this.message = "";
+      }, 4000);
     },
     login() {
       const provider = new firebase.auth.GoogleAuthProvider();
