@@ -1,7 +1,8 @@
 <template>
   <div class="login-container">
+    <div class="notification" :class="{ active: result }">{{ message }}</div>
     <div class="auth open">
-      <div class="modal active">
+      <div class="modal">
         <!-- 最初はloginFormを表示する -->
         <h1>Login</h1>
         <form class="login">
@@ -38,11 +39,11 @@
     <section class="content">
       <h1>Tutorial Request</h1>
       <ul class="request-list">
-        <li>
-          <span class="text">Laravel 6 Tutorial</span>
+        <li v-for="request in requests" :key="request.id">
+          <span class="text">{{ request.text }}</span>
           <div>
-            <span class="votes">125</span>
-            <i class="mdi mdi-check" />
+            <span class="votes">{{ request.upvotes }}</span>
+            <i class="mdi mdi-check" @click="upvotedRequest(request.id)" />
           </div>
         </li>
       </ul>
@@ -55,14 +56,47 @@
 import firebase from "~/plugins/firebase";
 export default {
   data() {
-    return {};
+    return {
+      message: "",
+      requests: [],
+      result: false,
+    };
   },
   computed: {
     isAuthenticated() {
       return this.$store.getters["user/isAuthenticated"];
     },
   },
+  mounted() {
+    const ref = firebase
+      .firestore()
+      .collection("request")
+      .orderBy("upvotes", "desc");
+
+    ref.onSnapshot((snapshot) => {
+      let requests = [];
+      snapshot.forEach((doc) => {
+        requests.push({ ...doc.data(), id: doc.id });
+      });
+      this.requests = requests;
+      // let html = "";
+      // requests.forEach((request) => {
+      //   html += `<li>${request.text}</li>`;
+      // });
+      // document.querySelector("ul").innerHTML = html;
+    });
+  },
   methods: {
+    upvotedRequest(id) {
+      const upvote = firebase.functions().httpsCallable("upvote");
+      upvote({ id }).catch((error) => {
+        this.showNotification(error.message);
+      });
+    },
+    showNotification(msg) {
+      this.result = true;
+      this.message = msg;
+    },
     login() {
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase
@@ -195,5 +229,22 @@ button {
 }
 .auth .modal.active {
   display: block;
+}
+.notification {
+  width: 200px;
+  padding: 20px;
+  position: fixed;
+  left: 50%;
+  margin-left: -110px;
+  top: 0;
+  border-radius: 0 0 5px 5px;
+  background: #ec2d2d;
+  text-align: center;
+  color: #fff;
+  margin-top: -100%;
+  transition: all 0.4s;
+}
+.notification.active {
+  margin-top: 0;
 }
 </style>

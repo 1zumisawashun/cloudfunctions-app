@@ -20,6 +20,7 @@ requestForm.addEventListener("submit", e => {
   e.preventDefault();
   console.log("requestをしています！");
   const addRequest = firebase.functions().httpsCallable("addRequest");
+  console.log(addRequest);
   addRequest({
     text: requestForm.request.value
   })
