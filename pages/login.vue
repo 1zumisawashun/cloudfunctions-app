@@ -131,24 +131,6 @@ export default {
 </script>
 
 <style>
-header {
-  width: 100%;
-  padding: 20px;
-  text-align: right;
-  background: white;
-  box-sizing: border-box;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
-}
-header a {
-  margin-left: 10px;
-  border-bottom: 2px solid #ffe100;
-  padding: 4px;
-  cursor: pointer;
-}
-header a:hover {
-  background: #ffe100;
-  color: black;
-}
 .content {
   max-width: 800px;
   margin: 40px auto 0;
