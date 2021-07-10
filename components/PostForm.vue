@@ -9,8 +9,8 @@
         <form ref="request_form">
           <input type="text" name="request" placeholder="Request..." />
           <input type="text" name="shop" placeholder="Shop Name..." />
-          <input type="text" name="user" placeholder="User Name..." />
-          <input type="text" name="career" placeholder="Career..." />
+          <!-- <input type="text" name="user" placeholder="User Name..." /> -->
+          <!-- <input type="text" name="career" placeholder="Career..." /> -->
           <input type="text" name="place" placeholder="Shop Place..." />
           <!-- <input type="file" name="image" @change="onFileChange" />
           <div class="preview">
@@ -30,11 +30,6 @@ import firebase from "~/plugins/firebase";
 export default {
   data() {
     return {
-      shop: "",
-      name: "",
-      career: "",
-      image: "",
-      place: "",
       upload: {
         file: "",
       },
@@ -79,16 +74,18 @@ export default {
         const addRequest = firebase.functions().httpsCallable("addRequest");
         addRequest({
           text: requestForm.request.value,
+          shop: requestForm.shop.value,
+          place: requestForm.place.value,
         })
           .then(() => {
             requestForm.reset();
-            console.log("ここまで来ている？");
             requestModal.classList.remove("open");
             requestForm.querySelector(".error").textContent = "";
+            console.log("DBに格納したので、履歴を消しています！");
           })
           .catch((error) => {
-            alert("error!");
             requestForm.querySelector(".error").textContent = error.message;
+            console.log("エラー！");
           });
       });
     },

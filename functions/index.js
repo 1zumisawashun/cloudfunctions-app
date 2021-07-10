@@ -12,11 +12,10 @@ exports.randomNumber = functions.https.onRequest((request, response) => {
 exports.toTheDojo = functions.https.onRequest((request, response) => {
   response.redirect("https://www.thenetninja.co.uk");
 });
+// oncall methods
 exports.sayHello = functions.https.onCall((data, context) => {
   const name = data.name;
   return `Hello, ${name}`;
-  // onCallを使う時はreturnで値を返す
-  // onCallはCORSを考えなくて済むのがメリット
 });
 
 exports.newUserSignup = functions.auth.user().onCreate(user => {
@@ -61,8 +60,11 @@ exports.addRequest = functions.https.onCall((data, context) => {
     .collection("request")
     .add({
       text: data.text,
+      shop: data.shop,
+      place: data.place,
       upvotes: 0
     });
+  //ネストしたcollectionの作り方は？
 });
 
 exports.upvote = functions.https.onCall(async (data, context) => {
