@@ -3,12 +3,6 @@
     <PageHeader></PageHeader>
     <ReservationForm></ReservationForm>
     <div class="coffee-container">
-      <!-- <div class="coffee-block" v-for="post in posts" :key="post.id">
-        <p class="item">{{ post.fields.name.stringValue }}</p>
-        <p class="item">{{ post.fields.category.stringValue }}</p>
-        <p class="item">{{ post.fields.hotorice.stringValue }}</p>
-        <p class="item">{{ post.fields.recommend.stringValue }}</p>
-      </div> -->
       <div class="coffee-card-container">
         <p class="headline">HotBeverage</p>
         <carousel

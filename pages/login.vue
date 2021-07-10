@@ -79,11 +79,6 @@ export default {
         requests.push({ ...doc.data(), id: doc.id });
       });
       this.requests = requests;
-      // let html = "";
-      // requests.forEach((request) => {
-      //   html += `<li>${request.text}</li>`;
-      // });
-      // document.querySelector("ul").innerHTML = html;
     });
   },
   methods: {
@@ -122,7 +117,6 @@ export default {
     sayHello() {
       const sayHello = firebase.functions().httpsCallable("sayHello");
       sayHello({ name: `shun` }).then((result) => {
-        //resultの中にcloud functionsのretrunの返り値が入る
         alert(result.data);
       });
     },
