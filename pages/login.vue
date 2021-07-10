@@ -1,41 +1,7 @@
 <template>
   <div class="login-container">
     <div class="notification" :class="{ active: result }">{{ message }}</div>
-    <div class="auth open">
-      <div class="modal">
-        <!-- 最初はloginFormを表示する -->
-        <h1>Login</h1>
-        <form class="login">
-          <input type="text" name="email" placeholder="email" />
-          <input type="text" name="password" placeholder="password" />
-          <button>Login</button>
-          <p class="error"></p>
-        </form>
-        <div>No account?<a class="switch">Register insted!</a></div>
-      </div>
-      <div class="modal">
-        <h1>Register</h1>
-        <form class="register">
-          <input type="text" name="email" placeholder="email" />
-          <input type="text" name="password" placeholder="password" />
-          <button>Register</button>
-          <p class="error"></p>
-        </form>
-        <div>Got on account?<a class="switch">Login insted!</a></div>
-      </div>
-    </div>
-
-    <div class="new-request">
-      <div class="modal">
-        <h2>Request a Tutorial</h2>
-        <form>
-          <input type="text" name="request" placeholder="Request..." />
-          <button>Submit Request</button>
-          <a class="error"></a>
-        </form>
-      </div>
-    </div>
-
+    <LoginForm></LoginForm>
     <section class="content">
       <h1>Tutorial Request</h1>
       <ul class="request-list">
@@ -49,11 +15,14 @@
       </ul>
     </section>
     <button class="item" @click="sayHello">say hello</button>
+    <button class="item"><nuxt-link to="/coffee">coffee</nuxt-link></button>
+    <button class="item"><nuxt-link to="/alcohol">alcohol</nuxt-link></button>
   </div>
 </template>
 
 <script>
 import firebase from "~/plugins/firebase";
+import LoginForm from "@/components/LoginForm.vue";
 export default {
   data() {
     return {
@@ -61,6 +30,9 @@ export default {
       requests: [],
       result: false,
     };
+  },
+  components: {
+    LoginForm,
   },
   computed: {
     isAuthenticated() {
@@ -72,7 +44,6 @@ export default {
       .firestore()
       .collection("request")
       .orderBy("upvotes", "desc");
-
     ref.onSnapshot((snapshot) => {
       let requests = [];
       snapshot.forEach((doc) => {
@@ -94,25 +65,7 @@ export default {
       setTimeout(() => {
         this.result = false;
         this.message = "";
-      }, 4000);
-    },
-    login() {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then((result) => {
-          const user = {
-            uid: result.user.uid,
-            name: result.user.displayName,
-            image: result.user.photoURL,
-            email: result.user.email,
-          };
-          this.$store.commit("user/setUser", user);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      }, 2000);
     },
     sayHello() {
       const sayHello = firebase.functions().httpsCallable("sayHello");
@@ -127,7 +80,7 @@ export default {
 <style>
 .content {
   max-width: 800px;
-  margin: 40px auto 0;
+  margin: 50px auto 0;
 }
 .request-list li {
   padding: 20px;
@@ -167,6 +120,7 @@ export default {
   position: fixed;
   background: rgba(0, 0, 0, 0.4);
   z-index: 1;
+  top: -1px;
   display: none;
 }
 .new-request.open {

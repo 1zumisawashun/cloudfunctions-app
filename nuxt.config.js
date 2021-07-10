@@ -20,7 +20,6 @@ export default {
   plugins: [
     { src: "~/plugins/vue-carousel", ssr: false },
     { src: "~/plugins/firebase", ssr: false },
-    { src: "~/plugins/app", ssr: false },
     { src: "~/plugins/auth", ssr: false }
   ],
 

@@ -1,5 +1,15 @@
 <template>
   <div class="post-container">
+    <div class="new-request">
+      <div class="modal">
+        <h2>Request a Tutorial</h2>
+        <form>
+          <input type="text" name="request" placeholder="Request..." />
+          <button>Submit Request</button>
+          <a class="error"></a>
+        </form>
+      </div>
+    </div>
     <div class="item">
       <label for="shop">店舗名 </label>
       <input type="text" id="shop" name="shop" v-model="shop" />
