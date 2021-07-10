@@ -117,10 +117,12 @@ export default {
 .new-request {
   width: 100%;
   height: 100%;
-  position: fixed;
+  position: absolute;
   background: rgba(0, 0, 0, 0.4);
   z-index: 1;
-  top: -1px;
+  top: 0;
+  left: 0;
+
   display: none;
 }
 .new-request.open {

@@ -1,35 +1,27 @@
 <template>
-  <div class="post-container">
-    <div class="item">
-      <label for="shop">店舗名 </label>
-      <input type="text" id="shop" name="shop" v-model="shop" />
-    </div>
-    <div class="item">
-      <label for="name">作り手</label>
-      <input type="text" id="name" name="name" v-model="name" />
-    </div>
-    <div class="item">
-      <label for="career">経験年数</label>
-      <input type="text" id="career" name="career" v-model="career" />
-    </div>
-    <div class="item">
-      <label for="image">画像</label>
-      <input type="file" id="image" name="image" @change="onFileChange" />
-    </div>
-    <div>
-      <div class="preview">
-        <img :src="this.preview.file" alt="" class="image" />
-        <img :src="this.upload.file" alt="" class="image" />
+  <div>
+    <!-- link -->
+    <a class="add-request" ref="add_request">add request</a>
+    <!-- modal -->
+    <div class="new-request" ref="new_request">
+      <div class="modal">
+        <h2>Request a Tutorial</h2>
+        <form ref="request_form">
+          <input type="text" name="request" placeholder="Request..." />
+          <input type="text" name="shop" placeholder="Shop Name..." />
+          <input type="text" name="user" placeholder="User Name..." />
+          <input type="text" name="career" placeholder="Career..." />
+          <input type="text" name="place" placeholder="Shop Place..." />
+          <!-- <input type="file" name="image" @change="onFileChange" />
+          <div class="preview">
+            <img :src="this.preview.file" alt="" class="image" />
+            <img :src="this.upload.file" alt="" class="image" />
+          </div> -->
+          <button>Submit Request</button>
+          <a class="error"></a>
+        </form>
       </div>
     </div>
-    <div class="item">
-      <label for="place">場所</label>
-      <input type="text" id="place" name="place" v-model="place" />
-    </div>
-    <div class="submit">
-      <button @click="submit()">登録</button>
-    </div>
-    <!-- user登録・編集とbevelegeの登録・編集の画面を作らなくてはいけない -->
   </div>
 </template>
 
@@ -57,42 +49,48 @@ export default {
     },
   },
   mounted() {
-    console.log(this.user.user.uid);
+    this.requestAddEventListner();
+    this.requestModalEventListner();
+    this.requestFormEventListner();
   },
   methods: {
-    submit() {
-      const url =
-        "https://firestore.googleapis.com/v1/projects/otsudori-7fdf5/databases/(default)/documents/posts";
-      // collectionがない場合は新規で作成しデータを格納する
-      const res = this.$axios
-        .$post(url, {
-          fields: {
-            shop: {
-              stringValue: this.shop,
-            },
-            name: {
-              stringValue: this.name,
-            },
-            career: {
-              stringValue: this.career,
-            },
-            image: {
-              stringValue: this.image,
-            },
-            place: {
-              stringValue: this.place,
-            },
-          },
+    requestAddEventListner() {
+      const requestModal = this.$refs.new_request;
+      const requestLink = this.$refs.add_request;
+      requestLink.addEventListener("click", () => {
+        requestModal.classList.add("open");
+        console.log("request-modalを開いています。");
+      });
+    },
+    requestModalEventListner() {
+      const requestModal = this.$refs.new_request;
+      requestModal.addEventListener("click", (e) => {
+        if (e.target.classList.contains("new-request")) {
+          console.log(e.target);
+          requestModal.classList.remove("open");
+        }
+      });
+    },
+    requestFormEventListner() {
+      const requestModal = this.$refs.new_request;
+      const requestForm = this.$refs.request_form;
+      requestForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const addRequest = firebase.functions().httpsCallable("addRequest");
+        addRequest({
+          text: requestForm.request.value,
         })
-        .then(() => {
-          (this.shop = null),
-            (this.name = null),
-            (this.career = null),
-            (this.image = null);
-          this.place = null;
-        });
-      alert("登録しました");
-      console.log(res);
+          .then(() => {
+            requestForm.reset();
+            console.log("ここまで来ている？");
+            requestModal.classList.remove("open");
+            requestForm.querySelector(".error").textContent = "";
+          })
+          .catch((error) => {
+            alert("error!");
+            requestForm.querySelector(".error").textContent = error.message;
+          });
+      });
     },
     onFileChange(e) {
       this.upload.file = e.target.files[0];
