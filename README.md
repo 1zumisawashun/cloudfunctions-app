@@ -1,8 +1,18 @@
 # otsudori
 
-デバック方法の確認
-try, catch, then, error など
-promise の async await も同じようなデバックにも使えるのかもしれない。
+■ what application is  
+・reservation management system
+
+■ reference  
+・https://store.tsite.jp/futakotamagawa/floor/shop/share-lounge/
+
+```
+サーバー：Cloud Functions for Firebase
+トークン：Firebase Authentication
+データベース：Firebase Firestore
+フロント：Nuxt.js Composition API
+
+```
 
 ## Build Setup
 
